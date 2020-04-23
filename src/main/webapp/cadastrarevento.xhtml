@@ -6,39 +6,47 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <h:outputStylesheet id="style" library="css" name="style.css"/>
     <title>Meetapp</title>
 </h:head>
 <h:body>
-    <h1>Cadastrar Eventos</h1>
-    <h:form>
-        <h:panelGrid columns="2">
-            <p:outputLabel value="Nome do Evento:"/>
-            <p:inputText value="#{eventoBean.evento.nome}"/>
+    <div id="header" class="center">
+        <h:graphicImage id="logo" library="images" name="meetapp.png"></h:graphicImage>
+    </div>
+    <div class="formulario center">
+        <h:form id="form">
+            <h:panelGrid>
+                <p:outputLabel value="Nome do Evento:"/>
+                <p:inputText value="#{eventoBean.evento.nome}"/>
 
-            <p:outputLabel value="Nome da Organização:"/>
-            <p:inputText value="#{eventoBean.evento.organizacao}"/>
+                <p:outputLabel value="Nome da Organização:"/>
+                <p:inputText value="#{eventoBean.evento.organizacao}"/>
 
-            <p:outputLabel value="Local:"/>
-            <p:inputText value="#{eventoBean.evento.local}"/>
+                <p:outputLabel value="Local:"/>
+                <p:inputText value="#{eventoBean.evento.local}"/>
 
-            <p:outputLabel value="Data:"/>
-            <p:inputText value="#{eventoBean.evento.data}"/>
+                <p:outputLabel value="Data:"/>
+                <p:inputText value="#{eventoBean.evento.data}" type="date"/>
 
-            <p:outputLabel value="Horário:"/>
-            <p:inputText value="#{eventoBean.evento.horario}"/>
+                <p:outputLabel value="Horário:"/>
+                <p:inputText value="#{eventoBean.evento.horario}" type="time"/>
 
-            <p:commandButton value="Cadastrar" action="#{eventoBean.adicionarEvento}"/>
-        </h:panelGrid>
-    </h:form>
-
-    <h1>Lista de Eventos</h1>
-
-    <p:dataTable value="#{eventoBean.eventos}" var="e" border="1">
-        <p:column headerText="Nome">#{e.nome}</p:column>
-        <p:column headerText="Organização">#{e.organizacao}</p:column>
-        <p:column headerText="Local">#{e.local}</p:column>
-        <p:column headerText="Data">#{e.data}</p:column>
-        <p:column headerText="Horário">#{e.horario}</p:column>
-    </p:dataTable>
+                <h:panelGroup styleClass="center">
+                    <p:commandButton id="btn-enviar" value="Cadastrar"
+                                     action="#{eventoBean.adicionarEvento}"
+                                     update="form table"/>
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:form>
+    </div>
+    <h:panelGroup id="list" styleClass="center">
+        <p:dataTable value="#{eventoBean.eventos}" var="e" border="1" id="table">
+            <p:column headerText="Nome">#{e.nome}</p:column>
+            <p:column headerText="Organização">#{e.organizacao}</p:column>
+            <p:column headerText="Local">#{e.local}</p:column>
+            <p:column headerText="Data">#{e.data}</p:column>
+            <p:column headerText="Horário">#{e.horario}</p:column>
+        </p:dataTable>
+    </h:panelGroup>
 </h:body>
 </html>
