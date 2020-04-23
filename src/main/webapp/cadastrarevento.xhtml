@@ -15,19 +15,29 @@
             <h:inputText value="#{eventoBean.evento.nome}"/>
 
             <h:outputText value="Nome da Organização:" />
-            <h:inputText/>
+            <h:inputText value="#{eventoBean.evento.organizacao}"/>
 
             <h:outputText value="Local:" />
-            <h:inputText/>
+            <h:inputText value="#{eventoBean.evento.local}"/>
 
             <h:outputText value="Data:" />
-            <h:inputText/>
+            <h:inputText value="#{eventoBean.evento.data}"/>
 
             <h:outputText value="Horário:" />
-            <h:inputText/>
+            <h:inputText value="#{eventoBean.evento.horario}"/>
 
             <h:commandButton value="Cadastrar" action="#{eventoBean.adicionarEvento}"/>
         </h:panelGrid>
     </h:form>
+
+    <h1>Lista de Eventos</h1>
+
+    <h:dataTable value="#{eventoBean.eventos}" var="e">
+        <h:column>#{e.nome}</h:column>
+        <h:column>#{e.organizacao}</h:column>
+        <h:column>#{e.local}</h:column>
+        <h:column>#{e.data}</h:column>
+        <h:column>#{e.horario}</h:column>
+    </h:dataTable>
 </h:body>
 </html>
